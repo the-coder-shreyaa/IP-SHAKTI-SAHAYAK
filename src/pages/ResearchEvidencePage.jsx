@@ -13,9 +13,6 @@ import {
   Database,
 } from "lucide-react";
 
-import SectionHeader from "../components/SectionHeader";
-import StatusBadge from "../components/StatusBadge";
-
 const researchRecords = [
   {
     id: "RE-001",
@@ -63,6 +60,35 @@ const researchRecords = [
   },
 ];
 
+/* Local SectionHeader
+   Keeping it inside this page removes the broken external import. */
+function SectionHeader({ eyebrow, title, description, icon: Icon }) {
+  return (
+    <div className="re-page-header">
+      <div className="re-page-header-icon">
+        {Icon && <Icon size={23} />}
+      </div>
+
+      <div>
+        <span className="re-eyebrow">{eyebrow}</span>
+        <h1>{title}</h1>
+        <p>{description}</p>
+      </div>
+    </div>
+  );
+}
+
+/* Local StatusBadge
+   Keeps the existing High / Moderate badge behaviour. */
+function StatusBadge({ status, tone = "warning" }) {
+  return (
+    <span className={`re-status-badge ${tone}`}>
+      <span className="re-status-dot" />
+      {status}
+    </span>
+  );
+}
+
 function ResearchEvidencePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [category, setCategory] = useState("All Categories");
@@ -82,8 +108,7 @@ function ResearchEvidencePage() {
       );
 
     const matchesCategory =
-      category === "All Categories" ||
-      record.type === category;
+      category === "All Categories" || record.type === category;
 
     return matchesSearch && matchesCategory;
   });
@@ -97,7 +122,6 @@ function ResearchEvidencePage() {
 
   return (
     <main className="page-content research-evidence-page">
-
       <SectionHeader
         eyebrow="STAGE 03 • RESEARCH EVIDENCE"
         title="Research Evidence Explorer"
@@ -107,12 +131,9 @@ function ResearchEvidencePage() {
 
       {/* JOURNEY */}
       <section className="re-journey-box">
-
         <div className="re-heading">
           <div>
-            <span className="re-eyebrow">
-              EVIDENCE INTELLIGENCE
-            </span>
+            <span className="re-eyebrow">EVIDENCE INTELLIGENCE</span>
 
             <h2>Build the Evidence Behind Your Innovation</h2>
 
@@ -129,7 +150,6 @@ function ResearchEvidencePage() {
         </div>
 
         <div className="re-process">
-
           <div className="re-process-card active">
             <div className="re-number">01</div>
             <div className="re-icon">
@@ -179,13 +199,11 @@ function ResearchEvidencePage() {
               <span>Use in IP journey</span>
             </div>
           </div>
-
         </div>
       </section>
 
       {/* STATS */}
       <section className="re-stats">
-
         <div className="re-stat">
           <div className="re-stat-icon">
             <Database size={20} />
@@ -229,22 +247,17 @@ function ResearchEvidencePage() {
           </div>
           <small>Pharmacological evidence</small>
         </div>
-
       </section>
 
       {/* SEARCH */}
       <section className="re-search-box">
-
         <div className="re-search-heading">
-
           <div className="re-heading-icon">
             <Search size={21} />
           </div>
 
           <div>
-            <span className="re-eyebrow">
-              RESEARCH SEARCH
-            </span>
+            <span className="re-eyebrow">RESEARCH SEARCH</span>
 
             <h2>Search Evidence for Your Innovation</h2>
 
@@ -258,13 +271,10 @@ function ResearchEvidencePage() {
             <span />
             SEARCH READY
           </div>
-
         </div>
 
         <div className="re-controls">
-
           <div className="re-input">
-
             <Search size={18} />
 
             <input
@@ -292,7 +302,6 @@ function ResearchEvidencePage() {
                 ×
               </button>
             )}
-
           </div>
 
           <select
@@ -318,7 +327,6 @@ function ResearchEvidencePage() {
             <Search size={17} />
             Search Evidence
           </button>
-
         </div>
 
         <div className="re-hints">
@@ -352,19 +360,14 @@ function ResearchEvidencePage() {
             Ayurveda
           </button>
         </div>
-
       </section>
 
       {/* RESULTS */}
       <section className="re-results-box">
-
         <div className="re-results-heading">
-
           <div>
             <span className="re-eyebrow">
-              {hasSearched
-                ? "SEARCH RESULTS"
-                : "EVIDENCE RECORDS"}
+              {hasSearched ? "SEARCH RESULTS" : "EVIDENCE RECORDS"}
             </span>
 
             <h2>
@@ -373,24 +376,18 @@ function ResearchEvidencePage() {
                 : "Relevant Research Evidence"}
             </h2>
 
-            <p>
-              Research records relevant to your innovation.
-            </p>
+            <p>Research records relevant to your innovation.</p>
           </div>
 
           <div className="re-count">
             <FileText size={15} />
             {filteredRecords.length} records found
           </div>
-
         </div>
 
         {filteredRecords.length > 0 ? (
-
           <div className="re-grid">
-
             {filteredRecords.map((record) => {
-
               const Icon =
                 record.type === "Clinical Research"
                   ? Activity
@@ -401,13 +398,8 @@ function ResearchEvidencePage() {
                   : BookOpen;
 
               return (
-                <article
-                  className="re-card"
-                  key={record.id}
-                >
-
+                <article className="re-card" key={record.id}>
                   <div className="re-card-top">
-
                     <div className="re-card-icon">
                       <Icon size={21} />
                     </div>
@@ -415,17 +407,12 @@ function ResearchEvidencePage() {
                     <StatusBadge
                       status={record.level}
                       tone={
-                        record.level === "High"
-                          ? "success"
-                          : "warning"
+                        record.level === "High" ? "success" : "warning"
                       }
                     />
-
                   </div>
 
-                  <div className="re-id">
-                    {record.id}
-                  </div>
+                  <div className="re-id">{record.id}</div>
 
                   <h3>{record.title}</h3>
 
@@ -439,7 +426,6 @@ function ResearchEvidencePage() {
                   <div className="re-divider" />
 
                   <div className="re-footer">
-
                     <span>
                       <Database size={13} />
                       Research dataset
@@ -457,19 +443,13 @@ function ResearchEvidencePage() {
                       Explore
                       <ExternalLink size={14} />
                     </button>
-
                   </div>
-
                 </article>
               );
             })}
-
           </div>
-
         ) : (
-
           <div className="re-empty">
-
             <div className="re-empty-icon">
               <Search size={25} />
             </div>
@@ -490,24 +470,18 @@ function ResearchEvidencePage() {
             >
               Clear Search
             </button>
-
           </div>
-
         )}
-
       </section>
 
       {/* EVIDENCE GAP */}
       <section className="re-gap-box">
-
         <div className="re-gap-icon">
           <Sparkles size={22} />
         </div>
 
         <div>
-          <span className="re-eyebrow">
-            EVIDENCE INTELLIGENCE
-          </span>
+          <span className="re-eyebrow">EVIDENCE INTELLIGENCE</span>
 
           <h3>Research Evidence → Evidence Gap Analysis</h3>
 
@@ -525,12 +499,10 @@ function ResearchEvidencePage() {
           <ArrowRight size={15} />
           <span>Gap Analysis</span>
         </div>
-
       </section>
 
       {/* NOTE */}
       <section className="re-note">
-
         <BookOpen size={17} />
 
         <div>
@@ -543,14 +515,48 @@ function ResearchEvidencePage() {
             research for scientific or IP decisions.
           </p>
         </div>
-
       </section>
 
-      {/* CSS */}
+      {/* PAGE CSS */}
       <style>{`
-
         .research-evidence-page {
           padding-bottom: 40px;
+        }
+
+        .re-page-header {
+          display: flex;
+          align-items: flex-start;
+          gap: 15px;
+          margin-bottom: 22px;
+        }
+
+        .re-page-header-icon {
+          width: 48px;
+          height: 48px;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #16835b;
+          background: #eaf7f0;
+          border: 1px solid #d0ecdd;
+          border-radius: 14px;
+        }
+
+        .re-page-header h1 {
+          margin: 0;
+          color: #183c2d;
+          font-size: 28px;
+          font-weight: 800;
+          line-height: 1.2;
+        }
+
+        .re-page-header p {
+          margin: 7px 0 0;
+          color: #718278;
+          font-size: 13px;
+          line-height: 1.6;
+          max-width: 760px;
         }
 
         .re-eyebrow {
@@ -909,6 +915,35 @@ function ResearchEvidencePage() {
           height: 42px;
         }
 
+        .re-status-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 9px;
+          border-radius: 999px;
+          font-size: 9px;
+          font-weight: 800;
+        }
+
+        .re-status-badge.success {
+          color: #13734d;
+          background: #eaf8f0;
+          border: 1px solid #c5e7d3;
+        }
+
+        .re-status-badge.warning {
+          color: #98701d;
+          background: #fff8df;
+          border: 1px solid #f0df9f;
+        }
+
+        .re-status-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: currentColor;
+        }
+
         .re-id {
           margin-top: 17px;
           color: #94a39b;
@@ -1123,8 +1158,11 @@ function ResearchEvidencePage() {
           .re-flow {
             grid-column: 1 / -1;
           }
-        }
 
+          .re-page-header h1 {
+            font-size: 23px;
+          }
+        }
       `}</style>
     </main>
   );
