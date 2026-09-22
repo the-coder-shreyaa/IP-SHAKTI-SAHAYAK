@@ -10,9 +10,9 @@ import {
   useNavigate,
 } from "react-router-dom";
 
-import Sidebar from "./components/sidebar";
-import Topbar from "./components/Topbar";
-import Dashboard from "./components/Dashboard";
+import Sidebar from "./components/Sidebar.jsx";
+import Topbar from "./components/Topbar.jsx";
+import Dashboard from "./components/Dashboard.jsx";
 
 import InnovationOverviewPage from "./pages/InnovationOverviewPage.jsx";
 import KnowledgeDiscoveryPage from "./pages/KnowledgeDiscoveryPage";
