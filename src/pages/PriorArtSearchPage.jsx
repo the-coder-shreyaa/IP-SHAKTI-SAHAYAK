@@ -20,7 +20,7 @@ import { sampleInnovation } from "../data/innovationData";
 import {
   getPatentById,
   searchAndComparePatents,
-} from "../services/patentSearch";
+} from "../services/patentsearch.js";
 
 import {
   getBookmarks,
