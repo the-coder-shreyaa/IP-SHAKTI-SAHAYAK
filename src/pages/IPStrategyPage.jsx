@@ -15,7 +15,7 @@ import {
   Globe2,
 } from "lucide-react";
 
-import SectionHeader from "../components/SectionHeader";
+import SectionHeader from "../components/SectionHeader.jsx";
 import StatusBadge from "../components/StatusBadge";
 
 const protectionPaths = [
