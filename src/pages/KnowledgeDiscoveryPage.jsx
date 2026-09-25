@@ -12,7 +12,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-import SectionHeader from "../components/sectionHeader.jsx";
+import SectionHeader from "../components/SectionHeader.jsx";
 import StatusBadge from "../components/StatusBadge";
 
 const knowledgeRecords = [
